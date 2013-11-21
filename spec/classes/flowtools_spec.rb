@@ -17,11 +17,11 @@ describe 'flowtools' do
         it { should contain_class('flowtools::config') }
         it { should contain_class('flowtools::service') }
         it do
-          should contain_service('flow-capture').with(
+          should contain_service('flow-capture').with({
             'ensure'     => 'running',
             'enable'     => 'true',
             'hasrestart' => 'true',
-          )
+          })
         end
         it do 
           should contain_file('/var/flow').with({
@@ -39,11 +39,11 @@ describe 'flowtools' do
           :concat_basedir => concatdir
         }}
         it do
-          should contain_service('flow-capture').with(
+          should contain_service('flow-capture').with({
             'ensure'     => 'stopped',
             'enable'     => 'false',
             'hasrestart' => 'true',
-          )
+          })
         end
         it do 
           should contain_file('/data/flows').with({
