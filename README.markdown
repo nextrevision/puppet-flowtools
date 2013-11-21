@@ -1,5 +1,7 @@
 #puppet-flowtools
 
+[![Build Status](https://travis-ci.org/nextrevision/puppet-flowtools.png?branch=master)](https://travis-ci.org/nextrevision/puppet-flowtools)
+
 ####Table of Contents
 
 1. [Overview](#overview)
