@@ -1,0 +1,67 @@
+#!/bin/sh -e
+#
+# flow-capture	Captures flow PDU's from a Cisco router.
+#
+#		Written by Miquel van Smoorenburg <miquels@cistron.nl>.
+#		Modified for Debian GNU/Linux by
+#		Ian Murdock <imurdock@gnu.ai.mit.edu> and
+#		Anibal Monsalve Salazar <A.Monsalve.Salazar@IEEE.org>
+
+### BEGIN INIT INFO
+# Provides:          flow-capture
+# Required-Start:    $local_fs $remote_fs $syslog $network $time
+# Required-Stop:     $local_fs $remote_fs $syslog $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: collects NetFlow data
+### END INIT INFO
+
+PATH=/usr/local/flow-tools/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=$(which flow-capture || exit 1)
+CONFIG=/etc/flow-tools/flow-capture.conf
+NAME=flow-capture
+DESC=flow-capture
+
+test -f $DAEMON || exit 0
+test -f $CONFIG || exit 0
+
+case "$1" in
+  start)
+  	pid=`pidof $DAEMON` || true
+
+	if [ "$pid" ]; then
+		echo "Sorry, flow-capture is already running."
+		exit 0
+	fi
+
+  	IFS='
+'
+	lines=`grep -E " |\t" /etc/flow-tools/flow-capture.conf | grep -v "^#"`
+	echo -n "Starting $DESC: "
+	for args in $lines; do
+		IFS=' '
+		$DAEMON ${args}
+	done
+	echo "$NAME."
+	;;
+  stop)
+	echo -n "Stopping $DESC: "
+	pid=`pidof $DAEMON` || true
+	if [ "$pid" ]; then
+		kill -TERM $pid >/dev/null 2>&1
+	fi
+	echo "$NAME."
+	;;
+  restart|force-reload)
+	$0 stop
+	sleep 1
+	$0 start
+	;;
+  *)
+	N=/etc/init.d/$NAME
+	echo "Usage: $N {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
