@@ -21,7 +21,7 @@ RSpec.configure do |c|
   c.after(:all) do
     shell('rm -rf /dne')
     shell('ps ax | grep flow-capture')
-    shell("netstat -lnup | egrep -q '(5555|5656)'")
+    shell("netstat -lnup | egrep '(5555|5656)'")
     shell('test -d /flows/device1')
     shell('test -d /flows/device2')
   end

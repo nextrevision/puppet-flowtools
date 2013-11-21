@@ -29,10 +29,10 @@ describe 'flowtools' do
           })
         end
       end
-      describe "flowtools class with enabled false parameter on #{osfamily}" do
+      describe "flowtools class with capture false parameter on #{osfamily}" do
         let(:params) {{
-          :enabled => false,
-          :flow_dir => '/data/flows',
+          :capture => false,
+          :flow_dir => '/data/flows'
         }}
         let(:facts) {{
           :osfamily => osfamily,
@@ -52,7 +52,7 @@ describe 'flowtools' do
         end
       end
       describe "flowtools class with invalid parameter on #{osfamily}" do
-        let(:params) {{ :enabled => 'notvalid' }}
+        let(:params) {{ :capture => 'notvalid' }}
         let(:facts) {{
           :osfamily => osfamily,
           :concat_basedir => concatdir

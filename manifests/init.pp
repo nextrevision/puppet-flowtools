@@ -15,7 +15,7 @@
 #
 # === Parameters
 #
-# [enabled]
+# [capture]
 #   boolean value to enable/disable flow-capture on startup
 #   and to manage the service itself (running/stopped)
 #
@@ -23,12 +23,12 @@
 #    directory to store the capture flows
 #
 class flowtools (
-  $enabled = true,
+  $capture  = true,
   $flow_dir = $flowtools::params::flow_dir,
 ) inherits flowtools::params {
 
   # validate parameters here
-  validate_bool($enabled)
+  validate_bool($capture)
   validate_absolute_path($flow_dir)
 
   class { 'flowtools::install': } ->

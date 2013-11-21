@@ -6,15 +6,16 @@
 class flowtools::service {
   include flowtools::params
 
-  $ensure = $flowtools::enabled ? {
+  $ensure = $flowtools::capture ? {
     true  => 'running',
     false => 'stopped',
   }
 
   service { $flowtools::params::service_name:
     ensure     => $ensure,
-    enable     => $flowtools::enabled,
+    enable     => $flowtools::capture,
     hasstatus  => false,
     hasrestart => true,
   }
+
 }

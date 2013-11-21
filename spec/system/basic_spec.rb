@@ -4,7 +4,7 @@ describe 'basic tests' do
   it 'class should work without errors' do
     pp = <<-EOS
       class { 'flowtools':
-        enabled  => true,
+        capture  => true,
         flow_dir => '/flows',
       }
       flowtools::device { 'device1':

@@ -6,7 +6,7 @@
   "description": "Used to install flow-tools and add flow-capture instances for devices",
   "dependencies": [
     {
-      "name": "puppetlabs/stdlib"
+      "name": "puppetlabs/stdlib",
       "name": "puppetlabs/concat"
     }
   ],
