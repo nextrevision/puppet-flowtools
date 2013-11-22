@@ -1,5 +1,5 @@
 name          'nextrevision-flowtools'
-version       '0.0.1'
+version '0.0.3'
 source        'git://github.com/nextrevision/puppet-flowtools.git'
 author        'nextrevision'
 license       'Apache License, Version 2.0'
