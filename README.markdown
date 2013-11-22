@@ -101,7 +101,7 @@ flowtools::device { 'device1':
 ### Just install flow-tools, don't start flow-capture
 ```
 class { 'flowtools':
-  enabled => false,
+  capture => false,
 }
 ```
 

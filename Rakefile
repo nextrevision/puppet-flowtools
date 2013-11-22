@@ -2,7 +2,7 @@ require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-lint/tasks/puppet-lint'
 require 'puppet-syntax/tasks/puppet-syntax'
 require 'rspec-system/rake_task'
-#require 'puppet_blacksmith/rake_tasks'
+require 'puppet_blacksmith/rake_tasks' if RUBY_VERSION > '1.9'
 
 PuppetLint.configuration.log_format = "%{path}:%{linenumber}:%{check}:%{KIND}:%{message}"
 PuppetLint.configuration.fail_on_warnings = true
