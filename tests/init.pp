@@ -9,4 +9,14 @@
 # Learn more about module testing here:
 # http://docs.puppetlabs.com/guides/tests_smoke.html
 #
-include flowtools
+class { 'flowtools':
+  capture  => true,
+  flow_dir => '/flows',
+}
+
+flowtools::device { 'device1':
+  ip_address => '192.168.1.1',
+  port       => '9996',
+  listen     => '0.0.0.0',
+  options    => '-V 5'
+}
