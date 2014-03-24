@@ -6,8 +6,8 @@ describe 'flowtools' do
     ['Debian', 'RedHat'].each do |osfamily|
 
       concatdir = '/dne' if concatdir.nil?
-      let(:hiera_config) { 'spec/fixtures/hiera/hiera.yaml' }
-      hiera = Hiera.new(:config => 'spec/fixtures/hiera/hiera.yaml')
+      let(:hiera_config) { 'spec/hiera/hiera.yaml' }
+      hiera = Hiera.new(:config => 'spec/hiera/hiera.yaml')
 
       describe "flowtools class without any parameters on #{osfamily}" do
         let(:params) {{ }}

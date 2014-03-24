@@ -1,0 +1,11 @@
+---
+flowtools::capture: true
+flowtools::flow_dir: '/mnt/flow1'
+flowtools::hiera_device:
+  br1:
+    ip_address: '1.1.1.1'
+    port: 8777
+  br2:
+    ip_address: '2.2.2.2'
+    port: 7777
+
