@@ -22,9 +22,12 @@
 # [flow_dir]
 #    directory to store the capture flows
 #
+# [hiera_device]
+#    pass a data from hiera to define flowtools::device(s)
 class flowtools (
-  $capture  = true,
-  $flow_dir = $flowtools::params::flow_dir,
+  $capture      = true,
+  $flow_dir     = $flowtools::params::flow_dir,
+  $hiera_device = undef,
 ) inherits flowtools::params {
 
   # validate parameters here
@@ -35,4 +38,8 @@ class flowtools (
   class { 'flowtools::config': } ~>
   class { 'flowtools::service': } ->
   Class['flowtools']
+
+  if $hiera_device {
+    create_resources('flowtools::device',$hiera_device)
+  }
 }

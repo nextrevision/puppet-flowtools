@@ -28,3 +28,47 @@ task :test => [
   :lint,
   :spec,
 ]
+task :centos59 do
+      sh %{RS_SET='centos-59-x64' rake spec:system}
+end
+
+task :centos64 do
+      sh %{RS_SET='centos-64-x64' rake spec:system}
+end
+
+task :ubuntu1204 do
+      sh %{RS_SET='ubuntu-server-12042-x64' rake spec:system}
+end
+
+task :ubuntu1004 do
+      sh %{RS_SET='ubuntu-server-10044-x64' rake spec:system}
+end
+
+task :debian6 do
+      sh %{RS_SET='debian-607-x64' rake spec:system}
+end
+
+task :debian7 do
+      sh %{RS_SET='debian-70rc1-x64' rake spec:system}
+end
+
+task :centos => [
+      :centos59,
+        :centos64,
+]
+
+task :ubuntu => [
+      :ubuntu1004,
+        :ubuntu1204,
+]
+
+task :debian => [
+      :debian6,
+        :debian7,
+]
+
+task :allsystems => [
+      :centos,
+        :ubuntu,
+          :debian,
+]

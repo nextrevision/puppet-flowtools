@@ -7,9 +7,9 @@
 1. [Overview](#overview)
 2. [Module Description](#module-description)
 3. [Setup - The basics of getting started with puppet-flowtools](#setup)
-    * [What puppet-flowtools affects](#what-[modulename]-affects)
+    * [What puppet-flowtools affects](#what-[flowtools]-affects)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with puppet-flowtools](#beginning-with-[Modulename])
+    * [Beginning with flowtools](#beginning-with-flowtools)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -29,7 +29,7 @@ This module can be used to only install flow-tools, with the use of the `capture
 
 ##Setup
 
-###What puppet-flowtools affects
+###What flowtools affects
 
 * /etc/init.d/flow-capture
 * /etc/flow-tools/flow-capture.conf
@@ -105,6 +105,21 @@ class { 'flowtools':
 }
 ```
 
+### Using Hiera data with flow-tools
+```
+---
+flowtools:
+  capture: true
+  flow_dir: '/mnt/flows'
+  hiera_devices:
+    router1:
+      ip_address: '10.1.1.1'
+      port: '9997'
+    router2:
+      ip_address: '10.2.1.1'
+      port: '9998'
+```
+
 ##Reference
 Classes:
 
@@ -122,6 +137,13 @@ Flow-Tools project:
 ##Limitations
 
 This module only supports Debian and RedHat family operating systems. For Debian family systems, flow-tools must be availlable via apt. For RedHat systems, flow-tools is installed via a RPM of the latest version due to flow-tools not being available in the Epel, RPMForge or standard repos.
+This module has been tested on pristine versions of:
+
+* RHEL/CentOS 6.4
+* Ubuntu 10.04
+* Ubuntu 12.04
+* Debian 6
+* Debian 7
 
 ##Development
 
