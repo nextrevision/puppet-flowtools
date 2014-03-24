@@ -31,7 +31,6 @@ define flowtools::device (
 
   # Validate params
   validate_string($ip_address)
-  validate_re($port, '^[0-9]+$')
   validate_string($listen)
   validate_string($options)
 

@@ -1,20 +1,4 @@
 {
-  "name": "nextrevision-flowtools",
-  "version": "0.0.1",
-  "summary": "Module to install flow-tools and manage flow-capture",
-  "author": "nextrevision",
-  "description": "Used to install flow-tools and add flow-capture instances for devices",
-  "dependencies": [
-    {
-      "name": "puppetlabs/stdlib",
-      "name": "puppetlabs/concat"
-    }
-  ],
-  "types": [],
-  "checksums": {},
-  "source": "git://github.com/nextrevision/puppet-flowtools.git",
-  "project_page": "http://github.com/nextrevision/puppet-flowtools",
-  "license": "Apache License, Version 2.0",
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -45,8 +29,28 @@
   ],
   "requirements": [
     {
+      "name": "pe",
+      "version_requirement": "3.2.x"
+    },
+    {
       "name": "puppet",
       "version_requirement": ">=2.7.20 <4.0.0"
     }
-  ]
+  ],
+  "name": "nextrevision-flowtools",
+  "version": "0.0.4",
+  "summary": "Module to install flow-tools and manage flow-capture",
+  "author": "nextrevision",
+  "description": "Used to install flow-tools and add flow-capture instances for devices",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "name": "puppetlabs/concat"
+    }
+  ],
+  "types": [],
+  "checksums": {},
+  "source": "git://github.com/nextrevision/puppet-flowtools.git",
+  "project_page": "http://github.com/nextrevision/puppet-flowtools",
+  "license": "Apache License, Version 2.0"
 }
