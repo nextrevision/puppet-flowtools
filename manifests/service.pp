@@ -11,11 +11,13 @@ class flowtools::service {
     false => 'stopped',
   }
 
-  service { $flowtools::params::service_name:
-    ensure     => $ensure,
-    enable     => $flowtools::capture,
-    hasstatus  => false,
-    hasrestart => true,
+  if $flowtools::manage_service {
+    service { $flowtools::params::service_name:
+      ensure     => $ensure,
+      enable     => $flowtools::capture,
+      hasstatus  => false,
+      hasrestart => true,
+    }
   }
 
 }

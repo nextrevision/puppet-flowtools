@@ -22,17 +22,50 @@
 # [flow_dir]
 #    directory to store the capture flows
 #
+# [manage_service]
+#    manage the flow tools service
+#
+# [package_name]
+#    name of the flow tools package to install
+#
+# [package_provider]
+#    specify provider to use for installing package
+#
+# [package_source]
+#    source of flow tools package to use with a local package provider
+#    if using a RedHat osfamily and you want to install from a yum repo,
+#    set this value to false and override the other package_* parameters
+#
+# [devices]
+#    hash of devices to create with flowtools::device
+#
+# [devices_defaults]
+#    default settings for devices (used in create_resources)
+#
 # [hiera_device]
-#    pass a data from hiera to define flowtools::device(s)
+#    (deprecated) pass a data from hiera to define flowtools::device(s)
 class flowtools (
-  $capture      = true,
-  $flow_dir     = $flowtools::params::flow_dir,
-  $hiera_device = undef,
+  $capture          = true,
+  $flow_dir         = $flowtools::params::flow_dir,
+  $manage_service   = true,
+  $package_name     = $flowtools::params::package_name,
+  $package_provider = $flowtools::params::package_provider,
+  $package_source   = $flowtools::params::package_source,
+  $devices          = {},
+  $devices_defaults = {},
+  # Deprecated params
+  $hiera_device     = {},
 ) inherits flowtools::params {
 
   # validate parameters here
   validate_bool($capture)
   validate_absolute_path($flow_dir)
+  validate_bool($manage_service)
+  validate_string($package_name)
+  validate_string($package_provider)
+  validate_hash($devices)
+  validate_hash($devices_defaults)
+  validate_hash($hiera_device)
 
   class { 'flowtools::install': } ->
   class { 'flowtools::config': } ~>
@@ -40,6 +73,13 @@ class flowtools (
   Class['flowtools']
 
   if $hiera_device {
-    create_resources('flowtools::device',$hiera_device)
+    warning('hiera_device is deprecated, use devices param instead')
+    $devices_real = $hiera_device
+  } else {
+    $devices_real = $devices
+  }
+
+  if !empty($devices_real) {
+    create_resources('flowtools::device', $devices, $devices_defaults)
   }
 }

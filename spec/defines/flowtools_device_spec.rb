@@ -3,9 +3,7 @@ require 'spec_helper'
 describe 'flowtools::device' do
   context 'on supported operating systems' do
     ['Debian', 'RedHat'].each do |osfamily|
-
       concatdir = '/dne' if concatdir.nil?
-
       describe "with required params on #{osfamily}" do
         let(:title) { 'device1' }
         let(:params) {{
@@ -18,7 +16,6 @@ describe 'flowtools::device' do
         }}
         let(:pre_condition) { 'include flowtools' }
 
-        it { should include_class('flowtools::params') }
         it 'should create a device directory for flow data' do
           should contain_file('/var/flow/device1').with({
             'ensure' => 'directory',
@@ -68,7 +65,6 @@ describe 'flowtools::device' do
         }}
         let(:pre_condition) { 'class { "flowtools": flow_dir => "/flows" }' }
 
-        it { should include_class('flowtools::params') }
         it 'should create a device directory for flow data' do
           should contain_file('/flows/device1').with({
             'ensure' => 'directory',
@@ -90,7 +86,7 @@ describe 'flowtools::device' do
           :osfamily => osfamily,
           :concat_basedir => concatdir
         }}
-        it { expect { should }.to raise_error(Puppet::Error, /Must pass/) }
+        it { expect { should contain_file('/var/flow/device1') }.to raise_error(Puppet::Error, /Must pass/) }
       end
 
     end

@@ -1,3 +1,8 @@
+2014-10-11 Release 0.0.5
+- Adding overrides for package parameters
+- Updating spec tests to include newer ruby and puppet versions
+- Deprecating hiera_devices in favor of devices and devices_defaults parameters
+
 2014-03-23 Release 0.0.4
 - Let's try adding metadata a different way...
 

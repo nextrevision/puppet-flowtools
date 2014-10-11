@@ -6,18 +6,21 @@
 class flowtools::install {
   include flowtools::params
 
-  if $::osfamily == 'RedHat' {
-    file { $flowtools::params::package_name:
+  if $flowtools::package_source {
+    file { $flowtools::package_name:
       ensure => present,
-      source => 'puppet:///modules/flowtools/flow-tools-0.68.5.1-1.x86_64.rpm',
+      source => $flowtools::package_source,
       before => Package['flow-tools'],
+    }
+    Package<| title == 'flow-tools' |> {
+      source => $flowtools::package_name
     }
   }
 
   package { 'flow-tools':
     ensure   => present,
-    source   => $flowtools::params::package_name,
-    provider => $flowtools::params::package_provider
+    name     => $flowtools::package_name,
+    provider => $flowtools::package_provider
   }
 
   file { $flowtools::flow_dir:

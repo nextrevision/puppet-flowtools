@@ -10,9 +10,9 @@ class flowtools::config {
     }
 
     concat { $flowtools::params::config_file:
-        owner   => 'root',
-        group   => 'root',
-        mode    => '0644',
+        owner => 'root',
+        group => 'root',
+        mode  => '0644',
     }
 
     concat::fragment { 'flowtools-device-header':

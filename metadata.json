@@ -30,7 +30,7 @@
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": "3.2.x"
+      "version_requirement": "3.x"
     },
     {
       "name": "puppet",
@@ -38,7 +38,7 @@
     }
   ],
   "name": "nextrevision-flowtools",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "summary": "Module to install flow-tools and manage flow-capture",
   "author": "nextrevision",
   "description": "Used to install flow-tools and add flow-capture instances for devices",
