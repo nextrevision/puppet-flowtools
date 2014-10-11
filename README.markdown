@@ -111,7 +111,7 @@ class { 'flowtools':
 flowtools:
   capture: true
   flow_dir: '/mnt/flows'
-  hiera_devices:
+  devices:
     router1:
       ip_address: '10.1.1.1'
       port: '9997'
