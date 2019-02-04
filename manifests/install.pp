@@ -28,11 +28,12 @@ class flowtools::install {
   }
 
   file { '/etc/init.d/flow-capture':
-    ensure => file,
-    source => 'puppet:///modules/flowtools/flow-capture.init',
-    mode   => '0755',
-    owner  => 'root',
-    group  => 'root'
+    ensure  => file,
+    source  => 'puppet:///modules/flowtools/flow-capture.init',
+    mode    => '0755',
+    owner   => 'root',
+    group   => 'root',
+    require => Package['flow-tools'],
   }
 
 }
