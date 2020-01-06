@@ -34,6 +34,7 @@ class flowtools::install {
     owner   => 'root',
     group   => 'root',
     require => Package['flow-tools'],
+    notify  => Service[$flowtools::params::service_name],
   }
 
 }
